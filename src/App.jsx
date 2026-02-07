@@ -1,9 +1,15 @@
 import React from "react";
+import Header from "./components/layouts/Header";
+import "style.css";
 
 function App() {
     return (
-        <div>
-            <h1>Hello World</h1>
+        <div className="flex min-h-screen flex-col">
+
+            <Header />
+            <main className="flex-1">
+
+            </main>
         </div>
     );
 }
