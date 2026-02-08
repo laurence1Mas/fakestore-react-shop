@@ -31,6 +31,12 @@ function Header() {
     }
   };
 
+  // document.addEventListener("click", () => {
+  //   if (isSearchOpen) {
+  //     setIsSearchOpen(false);
+  //   }
+  // });
+
   // Fermer l'input si l'utilisateur appuie sur Entrée
   const handleKeyPress = (e) => {
     if (e.key === "Enter") handleSearch();
@@ -106,7 +112,7 @@ function Header() {
               onKeyDown={(e) => handleKeyPress(e)}
               type="text"
               placeholder="Search products..."
-              className="w-[85%]  transition-all duration-300 bg-muted border-none  outline-none rounded-full"
+              className="w-[85%]  transition-all duration-300 bg-muted border-none  outline-none rounded-full focus-visible:ring-ring-1"
             />
 
             <Button
