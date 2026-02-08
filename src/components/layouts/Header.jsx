@@ -47,7 +47,7 @@ function Header() {
   }, [isMenuOpen]);
 
   return (
-    <header className="w-full flex items-center justify-between p-6 md:p-12 relative">
+    <header className="w-full flex items-center justify-between p-6 md:p-12 bg-background shadow-md fixed">
       <h1 className="text-2xl md:text-3xl font-semibold">FastShop</h1>
 
       {/* Menu desktop */}
@@ -98,7 +98,7 @@ function Header() {
         </Button>
 
         {isSearchOpen && (
-          <div className="absolute top-[6rem] md:top-[10rem] left-1/2 right-1/2 transform -translate-x-1/2 w-[90vw] md:w-1/2 min-h-[10rem]  bg-foreground/90 p-8 md:p-12  shadow-md flex items-center gap-2 z-20">
+          <div className="absolute top-[6rem] md:top-[10rem] left-1/2 right-1/2 transform -translate-x-1/2 w-[90vw] md:w-1/3 min-h-8  bg-foreground p-8 rounded-xl md:p-12  shadow-xl  flex items-center gap-2 z-50">
             <Input
               ref={searchRef}
               value={inputValue}
@@ -112,7 +112,7 @@ function Header() {
             <Button
               variant="secondary"
               size="icon"
-              className={`rounded-full`}
+              className={`rounded-full bg-muted `}
               onClick={() => handleSearch()}
             >
               <FaSearch />
@@ -150,7 +150,7 @@ function Header() {
       {/* Menu mobile */}
       {shouldRenderMenu && (
         <nav
-          className={`md:hidden flex flex-col items-start gap-y-10 absolute top-0 left-0 w-full bg-background/90 px-8 pt-16 transition-all duration-300 z-10
+          className={`md:hidden flex flex-col items-start gap-y-3 absolute top-0 left-0 w-full bg-background/95 px-8 py-16 transition-all duration-300 z-10
             ${isMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"}`}
         >
           <Link
