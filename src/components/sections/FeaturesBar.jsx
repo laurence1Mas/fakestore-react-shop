@@ -13,7 +13,7 @@ function FeaturesBar() {
             <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-4">
                 {features.map((item)=>(
                     <div key={item.title} className="flex items-center gap-3">
-                        <item.icon className="h-8 w-8 text-orange-500 shrink-0" />
+                        <item.icon className="h-8 w-8 text-blue-800 shrink-0" />
                         <div>
                             <h3 className="text-sm font-semibold">{item.title}</h3>
                             <p className="text-gray-500 text-xs">{item.desc}</p>
