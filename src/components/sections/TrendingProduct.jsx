@@ -24,10 +24,7 @@ const TrendingProducts = () => {
         {/* Category Tabs */}
         <div className="flex justify-center gap-4 mb-8 flex-wrap">
           {categories.map((cat, i) => (
-            <button
-              key={cat}
-              onClick={() => setActive(i)}
-              className={`text-sm px-4 py-2 rounded-full border ${
+            <button key={cat} onClick={() => setActive(i)} className={`text-sm px-4 py-2 rounded-full border ${
                 active === i ? "bg-orange-500 text-white border-orange-500" : "border-gray-300 text-gray-600"
               }`}
             >
@@ -39,7 +36,7 @@ const TrendingProducts = () => {
         {/* Product Grid */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           {products.map((p) => (
-            <Card key={p.id} className="overflow-hidden">
+            <Card key={p.id} className="overflow-hidden hover:shadow-lg transition-shadow">
               <img src={`https://picsum.photos/${p.img}`} alt={p.name} className="w-full h-48 object-cover" />
               <CardContent className="p-4">
                 <p className="text-xs text-orange-500 mb-1">{p.category}</p>
