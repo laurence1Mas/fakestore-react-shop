@@ -5,7 +5,7 @@ export default {
     "./index.html",
     "./src/**/*.{ts,tsx,js,jsx}",
   ],
-  theme: {
+theme: {
   	extend: {
   		borderRadius: {
   			lg: 'var(--radius)',
@@ -57,4 +57,4 @@ export default {
   	}
   },
   plugins: [require("tailwindcss-animate")],
-}
+}  
