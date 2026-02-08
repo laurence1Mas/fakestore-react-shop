@@ -15,6 +15,8 @@ function App() {
                 <TrendingProducts />
                 <BestSelleProduct />
                 <BlogSection />
+            <main className="flex-1">
+
             </main>
         </div>
     );
