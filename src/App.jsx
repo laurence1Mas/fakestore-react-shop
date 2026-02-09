@@ -8,6 +8,7 @@ import "./style.css";
 import HeroBanner from "./components/sections/HeroBanner";
 import BrandsSection from "./components/sections/BrandsSection";
 import NewArrivalSection from "./components/sections/NewArrivalSection";
+import PromoBanner from "./components/sections/PromoBanner";   
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <BestSelleProduct />
         <NewArrivalSection />
         <BrandsSection />
+        <PromoBanner />
         <BlogSection />
       </main>
     </div>
