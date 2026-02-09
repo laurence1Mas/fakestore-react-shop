@@ -12,6 +12,7 @@ function App() {
     <div className="flex min-h-screen flex-col">
       <Header />
       <main className="flex-1">
+        <HeroBanner />
         <FeaturesBar />
         <TrendingProducts />
         <BestSelleProduct />
