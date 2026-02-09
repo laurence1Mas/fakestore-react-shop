@@ -13,7 +13,7 @@ const features = [
 ];
 function FeaturesBar() {
   return (
-    <section className="bg-secondary/50 py-8 mt-8">
+    <section className="bg-secondary/50 py-12 px-8 md:px-56">
       <div className="container mx-auto grid grid-cols-2 md:grid-cols-1 lg:grid-cols-4 gap-6 px-4 ">
         {features.map((item) => (
           <div key={item.title} className="flex items-center gap-3">

@@ -7,12 +7,12 @@ import { Star } from "lucide-react"
 
 export default function ProductCard({ product }) {
   return (
-    <Card className="group overflow-hidden border hover:shadow-md transition">
+    <Card className="group overflow-hidden border hover:shadow-md transition z-0">
 
       {/* IMAGE */}
       <div className="relative bg-gray-100">
         <img src={`https://picsum.photos/${product.img}`} alt={product.name}
-          className="w-full h-64 object-cover group-hover:scale-105 transition duration-300"
+          className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
         />
 
         {/* BADGE */}

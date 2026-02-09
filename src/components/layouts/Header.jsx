@@ -52,7 +52,7 @@ function Header() {
   }, [isMenuOpen]);
 
   return (
-    <header className="w-full flex items-center justify-between p-6 md:p-12 bg-background  fixed">
+    <header className="w-full flex items-center z-50 justify-between p-6 md:p-12 bg-background  fixed">
       <h1 className="text-2xl md:text-3xl font-semibold">FastShop</h1>
 
       {/* Menu desktop */}

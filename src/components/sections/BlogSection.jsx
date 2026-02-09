@@ -26,15 +26,23 @@ const blogs = [
         month: "Apr",
         img: "seed/blog3/400/250.jpg",
     },
+    {
+        id: 4,
+        excerpt: "Learn about the latest trends in wearable technology and how they are changing the way we interact with our devices.",
+        title: "Wearable Tech: The Future of Personal Technology",
+        date: "20, 2024",
+        month: "May",
+        img: "seed/blog4/400/250.jpg",
+    }
 ];
 
 function BlogSection() {
     return (
-        <section className="py-12 px-4">
+        <section className="py-12 px-8 md:px-56">
             <div className="container mx-auto">
                 <h2 className="text-2xl font-bold mb-8 text-center">Latest Blog Posts</h2>
                 <p className="text-center text-gray-600 mb-12">Stay updated with the latest trends and tips in technology.</p>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {blogs.map((blog) => (
                         <Card key={blog.id} className="overflow-hidden border hover:shadow-md transition">
                             <div className="flex flex-col md:flex-row">
@@ -50,7 +58,7 @@ function BlogSection() {
                                     {/* DATE BOX */}
                                     <div className="absolute top-3 left-3 bg-white text-center shadow px-2 py-1">
                                         <p className="text-sm font-bold text-gray-800">{blog.date}</p>
-                                        <p className="text-xs text-gray-500">{blog.month}</p>
+                                        <p className="text-xs text-white bg-orange-500">{blog.month}</p>
                                     </div>
                                 </div>
 
