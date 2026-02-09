@@ -6,6 +6,7 @@ import BlogSection from "./components/sections/BlogSection";
 import BestSelleProduct from "./components/sections/BestSelleProduct";
 import "./style.css";
 import HeroBanner from "./components/sections/HeroBanner";
+import PromoBanner from "./components/sections/PromoBanner";   
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <FeaturesBar />
         <TrendingProducts />
         <BestSelleProduct />
+        <PromoBanner />
         <BlogSection />
       </main>
     </div>
