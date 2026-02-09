@@ -11,9 +11,7 @@ export default function ProductCard({ product }) {
 
       {/* IMAGE */}
       <div className="relative bg-gray-100">
-        <img
-          src={`https://picsum.photos/${product.img}`}
-          alt={product.name}
+        <img src={`https://picsum.photos/${product.img}`} alt={product.name}
           className="w-full h-64 object-cover group-hover:scale-105 transition duration-300"
         />
 
