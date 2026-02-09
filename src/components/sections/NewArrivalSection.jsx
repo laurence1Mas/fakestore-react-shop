@@ -33,48 +33,14 @@ const products = [
         img: "400/400?random=4",
         badge: "HOT",
         rating: 3.5,
-    },
-    {
-        id: 5,
-        name: "Casual T-Shirt",
-        price: 30,
-        img: "400/400?random=5",
-        badge: "POPULAR",
-        rating: 4.5,
-    },
-    {
-        id: 6,
-        name: "Denim Jeans",
-        price: 60,
-        img: "400/400?random=6",
-        badge: "SALE",
-        rating: 4,
-    },
-    {
-        id: 7,
-        name: "Leather Jacket",
-        price: 150,
-        img: "400/400?random=7",
-        badge: "NEW",
-        rating: 5,
-    },
-    {
-        id: 8,
-        name: "Running Sneakers",
-        price: 80,
-        img: "400/400?random=8",
-        badge: "BEST",
-        rating: 4.5,
-    },
+    }
 ]
 
-
-
-function BestSelleProduct() {
+function NewArrivalSection() {
     return (
         <section className="py-12 px-8 md:px-56">
             <div className="container mx-auto">
-                <h2 className="text-2xl font-bold mb-6">Best Seller Products</h2>
+                <h2 className="text-2xl font-bold mb-6">New Arrival</h2>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                     {products.map((product) => (
                         <ProductCard key={product.id} product={product} />
@@ -84,4 +50,5 @@ function BestSelleProduct() {
         </section>
     );
 }
-export default BestSelleProduct;
+
+export default NewArrivalSection;   
