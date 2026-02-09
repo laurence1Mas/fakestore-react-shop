@@ -32,20 +32,6 @@ export default function ProductCard({ product }) {
       `}
             >
               {product.badge}
-
-              {/* triangle gauche */}
-              <span
-                className={`
-          absolute left-0 top-0 w-0 h-0
-          border-t-[12px] border-b-[12px] border-l-[12px]
-          border-t-transparent border-b-transparent
-          ${product.badge === "SALE" ? "border-l-orange-700" :
-                    product.badge === "NEW" ? "border-l-blue-700" :
-                      product.badge === "BEST" ? "border-l-green-700" :
-                        product.badge === "HOT" ? "border-l-red-700" :
-                          "border-l-purple-700"}
-        `}
-              />
             </span>
           </div>
         )}

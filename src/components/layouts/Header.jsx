@@ -63,6 +63,13 @@ function Header() {
           Home
         </Link>
         <Link
+          to="/about"
+          className="text-lg hover:text-card-foreground/80 transition duration-300"
+        >
+          About
+        </Link>
+
+        <Link
           to="/features"
           className="text-lg hover:text-card-foreground/80 transition duration-300"
         >
@@ -74,12 +81,7 @@ function Header() {
         >
           Electronics
         </Link>
-        <Link
-          to="/about"
-          className="text-lg hover:text-card-foreground/80 transition duration-300"
-        >
-          About
-        </Link>
+
         <Link
           to="/blog"
           className="text-lg hover:text-card-foreground/80 transition duration-300"
@@ -164,6 +166,12 @@ function Header() {
             Home
           </Link>
           <Link
+            to="/about"
+            className="w-full pb-5 border-b-2 border-foreground/20 text-xl font-medium hover:text-foreground/70"
+          >
+            About
+          </Link>
+          <Link
             to="/features"
             className="w-full pb-5 border-b-2 border-foreground/20 text-xl font-medium hover:text-foreground/70"
           >
@@ -175,12 +183,7 @@ function Header() {
           >
             Electronics
           </Link>
-          <Link
-            to="/about"
-            className="w-full pb-5 border-b-2 border-foreground/20 text-xl font-medium hover:text-foreground/70"
-          >
-            About
-          </Link>
+
           <Link
             to="/blog"
             className="w-full pb-5 border-b-2 border-foreground/20 text-xl font-medium hover:text-foreground/70"

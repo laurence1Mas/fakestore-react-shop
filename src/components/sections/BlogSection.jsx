@@ -48,14 +48,13 @@ function BlogSection() {
                             <div className="flex flex-col md:flex-row">
 
                                 {/* IMAGE */}
-                                <div className="relative md:w-1/3">
+                                <div className="relative md:w-1/2">
                                     <img
                                         src={`https://picsum.photos/${blog.img}`}
                                         alt={blog.title}
                                         className="w-full h-52 md:h-full object-cover"
                                     />
 
-                                    {/* DATE BOX */}
                                     <div className="absolute top-3 left-3 bg-white text-center shadow px-2 py-1">
                                         <p className="text-sm font-bold text-gray-800">{blog.date}</p>
                                         <p className="text-xs text-white bg-orange-500">{blog.month}</p>
@@ -63,7 +62,7 @@ function BlogSection() {
                                 </div>
 
                                 {/* CONTENT */}
-                                <CardContent className="md:w-2/3 p-5 flex flex-col justify-center">
+                                <CardContent className="md:w-1/2 p-5 flex flex-col justify-center">
                                     <h3 className="font-semibold text-lg mb-2 hover:text-orange-500 cursor-pointer">
                                         {blog.title}
                                     </h3>
@@ -81,6 +80,7 @@ function BlogSection() {
                                 </CardContent>
 
                             </div>
+
                         </Card>
                     ))}
 
