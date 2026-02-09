@@ -29,6 +29,12 @@ function Header() {
     }
   };
 
+  // document.addEventListener("click", () => {
+  //   if (isSearchOpen) {
+  //     setIsSearchOpen(false);
+  //   }
+  // });
+
   // Fermer l'input si l'utilisateur appuie sur Entrée
   const handleKeyPress = (e) => {
     if (e.key === "Enter") handleSearch();
@@ -45,16 +51,41 @@ function Header() {
   }, [isMenuOpen]);
 
   return (
-    <header className="w-full flex items-center justify-between p-6 md:p-12 relative">
+    <header className="w-full flex items-center justify-between p-6 md:p-12 bg-background  fixed">
       <h1 className="text-2xl md:text-3xl font-semibold">FastShop</h1>
 
       {/* Menu desktop */}
-      <nav className="hidden md:flex items-center gap-4 md:gap-8">
-        <Link to="/">Home</Link>
-        <Link to="/features">Features</Link>
-        <Link to="/electronics">Electronics</Link>
-        <Link to="/about">About</Link>
-        <Link to="/blog">Blog</Link>
+      <nav className="hidden md:flex items-center gap-4 text-lg font-medium md:gap-8">
+        <Link
+          to="/"
+          className="text-lg hover:text-card-foreground/80 transition duration-300"
+        >
+          Home
+        </Link>
+        <Link
+          to="/features"
+          className="text-lg hover:text-card-foreground/80 transition duration-300"
+        >
+          Features
+        </Link>
+        <Link
+          to="/electronics"
+          className="text-lg hover:text-card-foreground/80 transition duration-300"
+        >
+          Electronics
+        </Link>
+        <Link
+          to="/about"
+          className="text-lg hover:text-card-foreground/80 transition duration-300"
+        >
+          About
+        </Link>
+        <Link
+          to="/blog"
+          className="text-lg hover:text-card-foreground/80 transition duration-300"
+        >
+          Blog
+        </Link>
         <Outlet />
       </nav>
 
@@ -64,14 +95,14 @@ function Header() {
         <Button
           variant="secondary"
           size="icon"
-          className={`rounded-full ${isSearchOpen ? "hidden" : null}`}
+          className={`rounded-full w-8 h-8 bg-muted ${isSearchOpen ? "hidden" : null}`}
           onClick={() => setIsSearchOpen(true)}
         >
           <FaSearch />
         </Button>
 
         {isSearchOpen && (
-          <div className="absolute top-[6rem] md:top-[10rem] left-1/2 right-1/2 transform -translate-x-1/2 w-[90vw] md:w-1/2 min-h-[10rem]  bg-foreground/90 p-8 md:p-12  shadow-md flex items-center gap-2 z-20">
+          <div className="absolute top-[6rem] md:top-[10rem] left-1/2 right-1/2 transform -translate-x-1/2 w-[90vw] md:w-1/3 min-h-8  bg-foreground p-8 rounded-xl md:p-12  shadow-xl  flex items-center gap-2 z-50">
             <Input
               ref={searchRef}
               value={inputValue}
@@ -79,13 +110,13 @@ function Header() {
               onKeyDown={(e) => handleKeyPress(e)}
               type="text"
               placeholder="Search products..."
-              className="w-[85%]  transition-all duration-300 bg-muted border-none  outline-none rounded-full"
+              className="w-[85%]  transition-all duration-300 bg-muted border-none  outline-none rounded-full focus-visible:ring-ring-1"
             />
 
             <Button
               variant="secondary"
               size="icon"
-              className={`rounded-full`}
+              className={`rounded-full bg-muted `}
               onClick={() => handleSearch()}
             >
               <FaSearch />
@@ -94,12 +125,20 @@ function Header() {
         )}
 
         {/* Cart Button */}
-        <Button variant="secondary" size="icon" className="rounded-full">
+        <Button
+          variant="secondary"
+          size="icon"
+          className="rounded-full w-8 h-8 bg-muted"
+        >
           <FaCartShopping />
         </Button>
 
         {/* User Button */}
-        <Button variant="secondary" size="icon" className="rounded-full">
+        <Button
+          variant="secondary"
+          size="icon"
+          className="rounded-full w-8 h-8 bg-muted"
+        >
           <FaUser />
         </Button>
       </section>
@@ -115,7 +154,7 @@ function Header() {
       {/* Menu mobile */}
       {shouldRenderMenu && (
         <nav
-          className={`md:hidden flex flex-col items-start gap-y-10 absolute top-0 left-0 w-full bg-background/90 px-8 pt-16 transition-all duration-300 z-10
+          className={`md:hidden flex flex-col items-start gap-y-3 absolute top-0 left-0 w-full bg-background/95 px-8 py-16 transition-all duration-300 z-10
             ${isMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"}`}
         >
           <Link

@@ -25,7 +25,7 @@
     --muted: 0 0% 95%; /* Couleur très claire pour backgrounds secondaires */
     --muted-foreground: 0 0% 50%;
 
-    --accent: 210 90% 56%; /* Bleu accent (New label) */
+    --accent: 210 70% 40%; /* Bleu accent (New label) */
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 94% 66%; /* Rouge/alerte si nécessaire */

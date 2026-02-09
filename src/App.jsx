@@ -5,6 +5,7 @@ import FeaturesBar from "./components/sections/FeaturesBar";
 import BlogSection from "./components/sections/BlogSection";
 import BestSelleProduct from "./components/sections/BestSelleProduct";
 import "./style.css";
+import HeroBanner from "./components/sections/HeroBanner";
 
 function App() {
   return (
