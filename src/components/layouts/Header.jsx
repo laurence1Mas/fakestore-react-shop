@@ -7,6 +7,15 @@ import { HiOutlineMenu } from "react-icons/hi";
 import { FaCartShopping } from "react-icons/fa6";
 import { IoCloseSharp } from "react-icons/io5";
 
+import React, { useState, useRef, useEffect } from "react";
+import { Outlet, Link } from "react-router";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { FaSearch, FaUser } from "react-icons/fa";
+import { HiOutlineMenu } from "react-icons/hi";
+import { FaCartShopping } from "react-icons/fa6";
+import { IoCloseSharp } from "react-icons/io5";
+
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
