@@ -32,7 +32,6 @@ export default function ProductCard({ product }) {
       `}
             >
               {product.badge}
-
             </span>
           </div>
         )}
