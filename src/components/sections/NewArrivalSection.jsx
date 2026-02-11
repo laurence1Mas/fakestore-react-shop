@@ -9,6 +9,7 @@ const products = [
         img: "400/400?random=1",
         badge: "SALE",
         rating: 4,
+        shortdescription: "A comfortable casual t-shirt"
     },
     {
         id: 2,
@@ -17,6 +18,7 @@ const products = [
         img: "400/400?random=2",
         badge: "NEW",
         rating: 5,
+        shortdescription: "A comfortable casual t-shirt"
     },
     {
         id: 3,
@@ -25,6 +27,7 @@ const products = [
         img: "400/400?random=3",
         badge: "BEST",
         rating: 4,
+        shortdescription: "A comfortable casual t-shirt "
     },
     {
         id: 4,
@@ -33,6 +36,7 @@ const products = [
         img: "400/400?random=4",
         badge: "HOT",
         rating: 3.5,
+        shortdescription: "A comfortable casual t-shirt "
     }
 ]
 
