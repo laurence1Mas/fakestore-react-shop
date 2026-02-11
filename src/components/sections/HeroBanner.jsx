@@ -111,7 +111,7 @@ export default function HeroBanner() {
             <CarouselItem key={index}>
               {/* A regler -----100% ou full  */}
               <Card className="w-full h-[60vh] md:h-screen  ">
-                <CardContent className=" w-full h-full flex flex-col-reverse md:flex-row justify-center items-center md:px-48 text-lg md:text-4xl font-bold bg-gradient-to-l from-orange-700 to-primary/90 md:bg-background   overflow-hidden ">
+                <CardContent className=" w-full h-full flex flex-col-reverse md:flex-row justify-center items-center md:px-48 text-lg md:text-4xl font-bold bg-gradient-to-l from-orange-700 to-primary/90 md:bg-none md:bg-background   overflow-hidden ">
                   <div className=" w-1/2 text-center space-y-8 bg-transparent ">
                     <h1>{slide.description}</h1>
                     {slide.button}
