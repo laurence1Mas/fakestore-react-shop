@@ -6,7 +6,7 @@ import Marque4 from "../../assets/images/marque4.png";
 import Marque5 from "../../assets/images/marque5.png";
 import Marque6 from "../../assets/images/marque6.png";
 
-const brands = [Marque1, Marque2, Marque3, Marque4, Marque5, Marque6];
+const brands = [Marque3, Marque2, Marque4, Marque1, Marque5, Marque6];
 
 function BrandsSection() {
   return (
@@ -24,7 +24,7 @@ function BrandsSection() {
             <img
               src={brand}
               alt={`Brand ${index + 1}`}
-              className="w-full h-full object-contain"
+              className="w-full h-full object-contain opacity-80"
             />
           </div>
         ))}
