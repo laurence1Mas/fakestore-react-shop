@@ -1,7 +1,6 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
-import PromoImg from "../../assets/images/promoImg.png";
-import Img from "../../assets/images/herosection2.png";
+import PromoImg from "../../assets/images/promo.png";
 
 function PromoBanner() {
   return (
@@ -24,11 +23,11 @@ function PromoBanner() {
         </Button>
       </div>
 
-      <div className="hidden w-1/2 h-full overflow-hidden ">
+      <div className="hidden md:block w-1/3 h-full overflow-hidden ">
         <img
-          src={Img}
+          src={PromoImg}
           alt="Fashion Model"
-          className="w-full h-full object-cover "
+          className="w-full h-full object-cover object-center "
         />
       </div>
     </section>
