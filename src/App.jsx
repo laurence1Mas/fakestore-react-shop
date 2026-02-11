@@ -9,7 +9,7 @@ import HeroBanner from "./components/sections/HeroBanner";
 import BrandsSection from "./components/sections/BrandsSection";
 import NewArrivalSection from "./components/sections/NewArrivalSection";
 import PromoBanner from "./components/sections/PromoBanner";
-import Footer from "./components/layouts/Footer";  
+import Footer from "./components/layouts/Footer";
 
 function App() {
   return (
@@ -20,12 +20,12 @@ function App() {
         <FeaturesBar />
         <TrendingProducts />
         <BestSelleProduct />
+        <PromoBanner />
         <NewArrivalSection />
         <BrandsSection />
-        <PromoBanner />
         <BlogSection />
-          <Footer />
       </main>
+      <Footer />
     </div>
   );
 }
