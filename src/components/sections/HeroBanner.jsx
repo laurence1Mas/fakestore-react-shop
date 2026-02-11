@@ -1,31 +1,68 @@
-import React from "react";
-import { Button } from "@/components/ui/button";
-import Profil1 from "../../assets/images/herosection.png";
-import Profil2 from "../../assets/images/herosection2.png";
+import * as React from "react";
+import HeroBanner1 from "../../assets/images/herosection.png";
+import HeroBanner2 from "../../assets/images/herosection2.png";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
+import { Card, CardContent } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 
-function HeroBanner() {
+export default function HeroBanner() {
+  const [api, setApi] = React.useState(null);
+  const [current, setCurrent] = React.useState(0);
+
+  const slides = [
+    {
+      image: HeroBanner1,
+      description: "Uscover ethnical cultivated and Fair-Trade gifts",
+    },
+    { image: HeroBanner2},
+    { image: HeroBanner2 },
+  ];
+
+  React.useEffect(() => {
+    if (!api) return;
+
+    setCurrent(api.selectedScrollSnap());
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap());
+    });
+  }, [api]);
+
   return (
-    <>
-      <section className="w-full min-h-[60vh] md:h-[85vh] mt-20 md:mt-32  md:px-56 bg-muted- flex flex-col-reverse md:flex-row items-center justify-center overflow-hidden">
-        <div className="text-center">
-          <h2 className="text-2xl md:text-3xl md:font-bold font-semibold my-5 md:my-8">
-            Uscover ethnical <br /> cultivated and Fair-Trade gifts
-          </h2>
-          <Button variant="default" size="lg">
-            Shop Now
-          </Button>
-        </div>
+    <div className="relative w-full h-[300px] md:h-screen">
+      <Carousel setApi={setApi} className="w-full h-full">
+        <CarouselContent>
+          {slides.map((_, index) => (
+            <CarouselItem key={index}>
+              <Card className="h-full">
+                <CardContent className="flex h-full items-center justify-center text-4xl font-bold">
+                  Slide {index + 1}
+                </CardContent>
+              </Card>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+      </Carousel>
 
-        <div className="w-1/2 h-auto flex items-center justify-center">
-          <img
-            src={Profil1}
-            alt="image hero section"
-            className="w-full h-full object-cover"
+      {/* Pagination buttons */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 z-20">
+        {slides.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => api?.scrollTo(index)}
+            className={cn(
+              "h-3 w-3 rounded-full transition-all",
+              current === index
+                ? "bg-black w-6"
+                : "bg-gray-400 hover:bg-gray-600",
+            )}
           />
-        </div>
-      </section>
-    </>
+        ))}
+      </div>
+    </div>
   );
 }
-
-export default HeroBanner;
