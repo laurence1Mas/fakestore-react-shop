@@ -49,7 +49,7 @@ export default function HeroBanner() {
         <Button
           variant={isMobile ? "outline" : "default"}
           size="lg"
-          className="bg-primary hover:bg-primary-foreground/90 text-background hover:text-foreground"
+          className="bg-transparent md:bg-primary hover:bg-primary-foreground/90 text-background hover:text-foreground"
         >
           Shop Now
         </Button>
@@ -67,7 +67,7 @@ export default function HeroBanner() {
         <Button
           variant={isMobile ? "outline" : "default"}
           size="lg"
-          className="bg-primary hover:bg-primary-foreground/90 text-background hover:text-foreground"
+          className="bg-transparent md:bg-primary hover:bg-primary-foreground/90 text-background hover:text-foreground"
         >
           Shop Now
         </Button>
@@ -85,7 +85,7 @@ export default function HeroBanner() {
         <Button
           variant={isMobile ? "outline" : "default"}
           size="lg"
-          className="bg-primary hover:bg-primary-foreground/90 text-background hover:text-foreground"
+          className="bg-transparent md:bg-primary hover:bg-primary-foreground/90 text-background hover:text-foreground"
         >
           Shop Now
         </Button>
@@ -110,19 +110,28 @@ export default function HeroBanner() {
           {slides.map((slide, index) => (
             <CarouselItem key={index}>
               {/* A regler -----100% ou full  */}
-              <Card className="w-full h-[60vh] md:h-screen  ">
-                <CardContent className=" w-full h-full flex flex-col-reverse md:flex-row justify-center items-center md:px-48 text-lg md:text-4xl font-bold bg-gradient-to-l from-orange-700 to-primary/90 md:bg-none md:bg-background   overflow-hidden ">
-                  <div className=" w-1/2 text-center space-y-8 bg-transparent ">
+              <Card className="flex md:block items-center justify-center w-full h-[60vh] md:h-screen relative md:static ">
+                <CardContent className="w-[90%] md:w-full h-1/2 md:h-full flex flex-col-reverse md:flex-row justify-center items-center md:px-48 text-lg md:text-4xl font-bold bg-gradient-to-l from-orange-700 to-primary/90 md:bg-none md:bg-background text-background md:text-foreground rounded-xl md:rounded-none  overflow-hidden ">
+                  <div
+                    className={
+                      isMobile
+                        ? "w-full text-start text-xs space-y-6 pr-36 bg-transparent"
+                        : "w-1/2 text-center space-y-8 bg-transparent"
+                    }
+                  >
                     <h1>{slide.description}</h1>
                     {slide.button}
                   </div>
-                  <div className="  md:w-1/2 md:h-full  relative  md:-bottom-12 ">
-                    <img
-                      src={isMobile ? slide.image2 : slide.image1}
-                      alt=""
-                      className=" w-full h-full object-cover object-top"
-                    />
-                  </div>
+
+                  <img
+                    src={isMobile ? slide.image2 : slide.image1}
+                    alt=""
+                    className={
+                      isMobile
+                        ? "absolute -right-6 bottom-10 w-[250px] h-[250px] object-contain "
+                        : "  md:w-1/2 md:h-full  relative  md:-bottom-20 "
+                    }
+                  />
                 </CardContent>
               </Card>
             </CarouselItem>
@@ -139,7 +148,7 @@ export default function HeroBanner() {
             className={cn(
               "h-3 w-3 rounded-full transition-all",
               current === index
-                ? "bg-foreground md:bg-primary w-6"
+                ? "bg-primary w-6"
                 : "bg-muted md:bg-foreground hover:bg-muted-foreground/10 md:hover:bg-gray-600 ",
             )}
           />
