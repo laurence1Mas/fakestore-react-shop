@@ -1,6 +1,7 @@
 import React from "react";
 import {Routes, Route } from "react-router-dom";
 import Header from "./components/layouts/Header";
+
 import Home from "./pages/home";
 import About from "./pages/about";
 import Features from "./pages/features";

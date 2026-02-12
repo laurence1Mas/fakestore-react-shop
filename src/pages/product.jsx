@@ -2,28 +2,31 @@ import React, { useState, useMemo } from "react";
 import ProductCard from "@/components/ui/productCard";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-
-const allProducts = Array.from({ length: 24 }).map((_, i) => ({
-  id: i + 1,
-  name: `Product ${i + 1}`,
-  price: Math.floor(Math.random() * 200) + 20,
-  rating: Math.ceil(Math.random() * 5),
-  category: ["Shoes", "Clothes", "Accessories"][i % 3],
-  badge: ["NEW", "SALE", "BEST", null][i % 4],
-  img: `400/400?random=${i + 1}`,
-  shortdescription: "Premium quality product designed for everyday use",
-  description:
-    "This is a detailed description of the product. It explains materials, comfort, durability and usage recommendations. Perfect for demonstrating modal product preview in an ecommerce UI.",
-}));
+import useProducts from "@/hooks/useProducts";
 
 export default function Product() {
+  const { products: allProducts, loading } = useProducts();
+
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [priceRange, setPriceRange] = useState(250);
+  const [priceRange, setPriceRange] = useState(1000);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
   const perPage = 8;
 
+  // categories dynamiques depuis API
+  const categories = useMemo(() => {
+    const unique = [...new Set(allProducts.map(p => p.category))];
+    return ["All", ...unique];
+  }, [allProducts]);
+
+  // prix max dynamique
+  const maxPrice = useMemo(() => {
+    if (!allProducts.length) return 1000;
+    return Math.ceil(Math.max(...allProducts.map(p => p.price)));
+  }, [allProducts]);
+
+  // filtrage
   const filtered = useMemo(() => {
     return allProducts.filter((p) => {
       const categoryMatch =
@@ -31,8 +34,9 @@ export default function Product() {
       const priceMatch = p.price <= priceRange;
       return categoryMatch && priceMatch;
     });
-  }, [selectedCategory, priceRange]);
+  }, [allProducts, selectedCategory, priceRange]);
 
+  // pagination
   const totalPages = Math.ceil(filtered.length / perPage);
 
   const products = filtered.slice(
@@ -40,29 +44,37 @@ export default function Product() {
     currentPage * perPage
   );
 
+  if (loading) {
+    return <div className="pt-40 text-center">Loading products...</div>;
+  }
+
   return (
     <div className="pt-28 px-4 md:px-12 pb-16">
+
+      {/* HERO */}
       <section className="max-w-5xl mx-auto text-center space-y-6 mb-20">
         <h1 className="text-4xl md:text-5xl font-bold">
           Discover products made for everyday life
         </h1>
         <p className="text-muted-foreground text-lg md:text-xl">
-          Browse our curated collection of quality items. Filter, compare and preview products instantly before buying.
+          Browse our curated collection of quality items.
         </p>
       </section>
+
       <div className="max-w-7xl mx-auto grid md:grid-cols-[260px_1fr] gap-10">
+
         {/* ASIDE FILTER */}
         <aside className="space-y-8">
           <Card className="p-5 space-y-4">
             <h2 className="font-semibold text-lg">Category</h2>
-            {["All", "Shoes", "Clothes", "Accessories"].map((c) => (
+            {categories.map((c) => (
               <button
                 key={c}
                 onClick={() => {
                   setSelectedCategory(c);
                   setCurrentPage(1);
                 }}
-                className={`block text-left w-full hover:text-orange-500 ${selectedCategory === c ? "font-semibold text-orange-500" : ""
+                className={`block text-left w-full hover:text-orange-500 capitalize ${selectedCategory === c ? "font-semibold text-orange-500" : ""
                   }`}
               >
                 {c}
@@ -71,14 +83,16 @@ export default function Product() {
           </Card>
 
           <Card className="p-5 space-y-4">
-            <h2 className="font-semibold text-lg">Max Price: ${priceRange}</h2>
+            <h2 className="font-semibold text-lg">
+              Max Price: ${priceRange}
+            </h2>
             <input
               type="range"
-              min={20}
-              max={250}
+              min={0}
+              max={maxPrice}
               value={priceRange}
               onChange={(e) => {
-                setPriceRange(e.target.value);
+                setPriceRange(Number(e.target.value));
                 setCurrentPage(1);
               }}
               className="w-full"
@@ -88,9 +102,9 @@ export default function Product() {
 
         {/* PRODUCTS */}
         <div className="space-y-10">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 mt-auto lg:grid-cols-4 gap-6">
             {products.map((product) => (
-              <div key={product.id} onClick={() => setSelectedProduct(product)}>
+              <div className="h-full mt-auto" key={product.id} onClick={() => setSelectedProduct(product)}>
                 <ProductCard product={product} />
               </div>
             ))}
@@ -121,15 +135,25 @@ export default function Product() {
             >
               ✕
             </button>
+
             <img
-              src={`https://picsum.photos/${selectedProduct.img}`}
-              className="rounded-xl w-full h-64 object-cover"
+              src={selectedProduct.img}
+              className="rounded-xl w-full h-64 object-contain bg-white p-6"
             />
+
             <h2 className="text-2xl font-semibold">{selectedProduct.name}</h2>
-            <p className="text-muted-foreground">{selectedProduct.description}</p>
+
+            <p className="text-muted-foreground">
+              {selectedProduct.description}
+            </p>
+
             <div className="flex justify-between items-center">
-              <span className="text-xl font-bold">${selectedProduct.price}</span>
-              <Button className="bg-orange-500 hover:bg-orange-600">Add to cart</Button>
+              <span className="text-xl font-bold">
+                ${selectedProduct.price}
+              </span>
+              <Button className="bg-orange-500 hover:bg-orange-600">
+                Add to cart
+              </Button>
             </div>
           </div>
         </div>
@@ -137,3 +161,4 @@ export default function Product() {
     </div>
   );
 }
+
