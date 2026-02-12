@@ -20,7 +20,6 @@ import Product from "./pages/product";
 import Blog from "./pages/blog";
 import Cart from "./pages/cart";
 import Login from "./pages/auth/login";
-import Footer from "./components/layouts/Footer";
 import "./style.css";
 function App() {
   return (
