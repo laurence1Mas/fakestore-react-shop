@@ -1,5 +1,4 @@
 import React from "react";
-// import axios from "axios";
 import { Button } from "../../components/ui/button";
 import { BiShow, BiSolidHide } from "react-icons/bi";
 import { Link } from "react-router-dom";
