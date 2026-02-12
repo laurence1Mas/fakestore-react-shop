@@ -1,12 +1,18 @@
 import React from "react";
 import { useState, useRef, useEffect } from "react";
-import { Outlet, Link } from "react-router";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { FaSearch, FaUser } from "react-icons/fa";
 import { HiOutlineMenu } from "react-icons/hi";
 import { FaCartShopping } from "react-icons/fa6";
 import { IoCloseSharp } from "react-icons/io5";
+import "./../../pages/about";
+import "./../../pages/contact";
+import "./../../pages/features";
+import "./../../pages/home";
+import "./../../pages/blog";
+import "./../../pages/product";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -71,19 +77,13 @@ function Header() {
 
       {/* Menu desktop */}
       <nav className="hidden md:flex items-center gap-4 text-lg font-medium md:gap-8">
-        <Link
-          to="/"
-          className="hover:text-popover-foreground/85 transition durection-300"
-        >
+        <Link to="/" className="hover:text-popover-foreground/85 transition durection-300">
           Home
         </Link>
-        <Link to="/features" className="">
-          Features
-        </Link>
-        <Link to="/electronics">Electronics</Link>
         <Link to="/about">About</Link>
+        <Link to="/features" className="">Features</Link>
+        <Link to="/product">Product</Link>
         <Link to="/blog">Blog</Link>
-        <Outlet />
       </nav>
 
       {/* Section boutons */}
@@ -161,31 +161,30 @@ function Header() {
             Home
           </Link>
           <Link
-            to="/features"
-            className="w-full pb-5 border-b-2 border-foreground/20 text-xl font-medium hover:text-foreground/70"
-          >
-            Features
-          </Link>
-          <Link
-            to="/electronics"
-            className="w-full pb-5 border-b-2 border-foreground/20 text-xl font-medium hover:text-foreground/70"
-          >
-            Electronics
-          </Link>
-          <Link
             to="/about"
             className="w-full pb-5 border-b-2 border-foreground/20 text-xl font-medium hover:text-foreground/70"
           >
             About
           </Link>
           <Link
+            to="/features"
+            className="w-full pb-5 border-b-2 border-foreground/20 text-xl font-medium hover:text-foreground/70"
+          >
+            Features
+          </Link>
+          <Link
+            to="/product"
+            className="w-full pb-5 border-b-2 border-foreground/20 text-xl font-medium hover:text-foreground/70"
+          >
+            Products
+          </Link>
+          
+          <Link
             to="/blog"
             className="w-full pb-5 border-b-2 border-foreground/20 text-xl font-medium hover:text-foreground/70"
           >
             Blog
           </Link>
-
-          <Outlet />
         </nav>
       )}
     </header>

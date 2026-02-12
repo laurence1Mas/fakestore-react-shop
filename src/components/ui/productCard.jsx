@@ -1,7 +1,6 @@
 import React from "react";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Star } from "lucide-react"
 
 const badgeStyles = {
@@ -15,7 +14,14 @@ const badgeStyles = {
 export default function ProductCard({ product }) {
   return (
     <Card className="group overflow-hidden border hover:shadow-md transition z-0">
-
+      <CardHeader className="p-4 text-left">
+        <CardTitle className="text-sm font-semibold mb-1 hover:text-orange-500 cursor-pointer">
+          {product.name}
+        </CardTitle>
+        <CardDescription className="text-xs text-gray-500">
+          {product.shortdescription}
+        </CardDescription>
+      </CardHeader>
       {/* IMAGE */}
       <div className="relative bg-gray-100">
         <img src={`https://picsum.photos/${product.img}`} alt={product.name}
@@ -36,32 +42,42 @@ export default function ProductCard({ product }) {
           </div>
         )}
 
-
       </div>
 
       {/* CONTENT */}
-      <CardContent className="p-4 text-center">
-        <h3 className="text-sm font-medium mb-2 hover:text-orange-500 cursor-pointer">
-          {product.name}
-        </h3>
+      <CardContent className="p-4 text-justify mt-auto">
 
-        {/* PRICE */}
-        <p className="font-semibold mb-2">${product.price}</p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 items-start gap-y-2 mb-3">
 
-        {/* STARS */}
-        <div className="flex justify-center gap-1 mb-3">
-          {[1, 2, 3, 4, 5].map((star) => (
-            <Star
-              key={star}
-              size={16}
-              className={`${star <= (product.rating || 4)
-                ? "fill-yellow-400 text-yellow-400"
-                : "text-gray-300"
-                }`}
-            />
-          ))}
+          {/* PRICE */}
+          <p className="font-semibold text-left sm:text-left">
+            ${product.price}
+          </p>
+
+          {/* RATING BLOCK */}
+          <div className="flex flex-col sm:items-end items-start">
+
+            {/* STARS */}
+            <div className="flex gap-1">
+              {[1, 2, 3, 4, 5].map((star) => (
+                <Star
+                  key={star}
+                  size={16}
+                  className={`${star <= (product.rating || 4)
+                    ? "fill-yellow-400 text-yellow-400"
+                    : "text-gray-300"
+                    }`}
+                />
+              ))}
+            </div>
+
+            {/* REVIEWS */}
+            <span className="text-xs text-gray-500 mt-1">
+              ({product.rating || 4} reviews)
+            </span>
+
+          </div>
         </div>
-
 
         {/* BUTTON */}
         <Button className="w-full bg-orange-500 hover:bg-orange-600">

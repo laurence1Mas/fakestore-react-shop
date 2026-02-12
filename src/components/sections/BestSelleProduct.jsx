@@ -9,6 +9,7 @@ const products = [
         img: "400/400?random=1",
         badge: "SALE",
         rating: 4,
+        shortdescription: "A stylish leather handbag "
     },
     {
         id: 2,
@@ -17,6 +18,7 @@ const products = [
         img: "400/400?random=2",
         badge: "NEW",
         rating: 5,
+        shortdescription: "Timeless classic shoes "
     },
     {
         id: 3,
@@ -25,6 +27,7 @@ const products = [
         img: "400/400?random=3",
         badge: "BEST",
         rating: 4,
+        shortdescription: "An elegant watch that "
     },
     {
         id: 4,
@@ -33,6 +36,7 @@ const products = [
         img: "400/400?random=4",
         badge: "HOT",
         rating: 3.5,
+        shortdescription: "Trendy sunglasses to protect "
     },
     {
         id: 5,
@@ -41,6 +45,7 @@ const products = [
         img: "400/400?random=5",
         badge: "POPULAR",
         rating: 4.5,
+        shortdescription: "A comfortable casual t-shirt "
     },
     {
         id: 6,
@@ -49,6 +54,7 @@ const products = [
         img: "400/400?random=6",
         badge: "SALE",
         rating: 4,
+        shortdescription: "A comfortable casual t-shirt "
     },
     {
         id: 7,
@@ -57,6 +63,7 @@ const products = [
         img: "400/400?random=7",
         badge: "NEW",
         rating: 5,
+        shortdescription: "A comfortable casual t-shirt "
     },
     {
         id: 8,
@@ -65,10 +72,9 @@ const products = [
         img: "400/400?random=8",
         badge: "BEST",
         rating: 4.5,
+        shortdescription: "A comfortable casual t-shirt "
     },
 ]
-
-
 
 function BestSelleProduct() {
     return (
