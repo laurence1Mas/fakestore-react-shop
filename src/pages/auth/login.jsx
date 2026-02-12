@@ -2,11 +2,11 @@ import React from "react";
 import { Button } from "../../components/ui/button";
 import { BiShow, BiSolidHide } from "react-icons/bi";
 import { Link } from "react-router-dom";
+import { loginUser } from "../../services/loginUser";
 function Login() {
   const [email, setEmail] = React.useState("");
   const [passWord, setPassWorrd] = React.useState("");
   const [message, setMessage] = React.useState("");
-  const [token, setToken] = React.useState(null);
   const [showPassword, setShowPassword] = React.useState(false);
 
   const handleLogin = async (e) => {
@@ -19,22 +19,19 @@ function Login() {
     }
 
     try {
-      const resp = await fetch.post("http://localhost:3000/login", {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          password: passWord,
-        }),
-      });
-      setMessage("Connexion reussie !");
-      localStorage.setItem("auth Token", resp.data.token);
+      const resp = await loginUser(email, passWord);
 
+      if (!resp.token) {
+        throw new Error(resp.message || "Erreur de connexion !");
+      }
+      setMessage("Connexion reussie !");
+
+      // stokage token dans localStorage
+      localStorage.setItem("auth Token", resp.data.token);
       console.log("Token", resp.data.token);
     } catch (err) {
       if (err.message) {
-        setMessage(err.response.data.message);
+        setMessage("Veillez vérifier votre email ou mot de passe.");
       } else {
         setMessage("Erreur Serveur");
       }
