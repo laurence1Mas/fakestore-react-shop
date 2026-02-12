@@ -76,8 +76,6 @@ const products = [
     },
 ]
 
-
-
 function BestSelleProduct() {
     return (
         <section className="py-12 px-8 md:px-56">
