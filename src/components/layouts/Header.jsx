@@ -1,12 +1,19 @@
 import React from "react";
 import { useState, useRef, useEffect } from "react";
-import { Outlet, Link } from "react-router";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { FaSearch, FaUser } from "react-icons/fa";
 import { HiOutlineMenu } from "react-icons/hi";
 import { FaCartShopping } from "react-icons/fa6";
 import { IoCloseSharp } from "react-icons/io5";
+import "./../../pages/about";
+import "./../../pages/contact";
+import "./../../pages/features";
+import "./../../pages/home";
+import "./../../pages/blog";
+import "./../../pages/product";
+
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -29,11 +36,25 @@ function Header() {
     }
   };
 
-  // document.addEventListener("click", () => {
-  //   if (isSearchOpen) {
-  //     setIsSearchOpen(false);
-  //   }
-  // });
+  // fermer l'input si clic en dehors
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        isSearchOpen &&
+        searchRef.current &&
+        !searchRef.current.contains(event.target)
+      ) {
+        setIsSearchOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isSearchOpen]);
 
   // Fermer l'input si l'utilisateur appuie sur Entrée
   const handleKeyPress = (e) => {
@@ -51,44 +72,18 @@ function Header() {
   }, [isMenuOpen]);
 
   return (
-    <header className="w-full flex items-center z-50 justify-between p-6 md:p-12 bg-background  fixed">
+    <header className="w-full flex items-center  justify-between p-4 md:px-12 md:py-5 bg-background  fixed z-50">
       <h1 className="text-2xl md:text-3xl font-semibold">FastShop</h1>
 
       {/* Menu desktop */}
       <nav className="hidden md:flex items-center gap-4 text-lg font-medium md:gap-8">
-        <Link
-          to="/"
-          className="text-lg hover:text-card-foreground/80 transition duration-300"
-        >
+        <Link to="/" className="hover:text-popover-foreground/85 transition durection-300">
           Home
         </Link>
-        <Link
-          to="/about"
-          className="text-lg hover:text-card-foreground/80 transition duration-300"
-        >
-          About
-        </Link>
-
-        <Link
-          to="/features"
-          className="text-lg hover:text-card-foreground/80 transition duration-300"
-        >
-          Features
-        </Link>
-        <Link
-          to="/electronics"
-          className="text-lg hover:text-card-foreground/80 transition duration-300"
-        >
-          Electronics
-        </Link>
-
-        <Link
-          to="/blog"
-          className="text-lg hover:text-card-foreground/80 transition duration-300"
-        >
-          Blog
-        </Link>
-        <Outlet />
+        <Link to="/about">About</Link>
+        <Link to="/features" className="">Features</Link>
+        <Link to="/product">Product</Link>
+        <Link to="/blog">Blog</Link>
       </nav>
 
       {/* Section boutons */}
@@ -178,28 +173,18 @@ function Header() {
             Features
           </Link>
           <Link
-            to="/electronics"
+            to="/product"
             className="w-full pb-5 border-b-2 border-foreground/20 text-xl font-medium hover:text-foreground/70"
           >
-            Electronics
+            Products
           </Link>
-
+          
           <Link
             to="/blog"
             className="w-full pb-5 border-b-2 border-foreground/20 text-xl font-medium hover:text-foreground/70"
           >
             Blog
           </Link>
-
-          <Outlet />
-
-          <Button
-            variant="default"
-            size="default"
-            className="w-1/2 mx-auto mt-5 text-md font-semibold bg-chart-1 hover:bg-chart-1/90 text-primary-foreground"
-          >
-            Sign In
-          </Button>
         </nav>
       )}
     </header>
