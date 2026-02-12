@@ -38,7 +38,6 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<Login />} />
         </Routes>
-        {/* <Footer /> */}
       </main>
     </div>
   );
