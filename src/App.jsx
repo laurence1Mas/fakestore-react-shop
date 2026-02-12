@@ -11,7 +11,6 @@ import HeroBanner from "./components/sections/HeroBanner";
 import BrandsSection from "./components/sections/BrandsSection";
 import NewArrivalSection from "./components/sections/NewArrivalSection";
 import PromoBanner from "./components/sections/PromoBanner";
-      
 
 import Home from "./pages/home";
 import About from "./pages/about";
@@ -20,6 +19,8 @@ import Product from "./pages/product";
 import Blog from "./pages/blog";
 import Cart from "./pages/cart";
 import Login from "./pages/auth/login";
+import SignIn from "./pages/auth/signin";
+import Footer from "./components/layouts/Footer";
 import "./style.css";
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           </Route>
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/signin" element={<SignIn />} />
         </Routes>
       </main>
     </div>
