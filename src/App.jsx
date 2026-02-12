@@ -1,5 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import Layout from "./components/layouts/layout";
 import Header from "./components/layouts/Header";
 import TrendingProducts from "./components/sections/TrendingProduct";
 import FeaturesBar from "./components/sections/FeaturesBar";
@@ -27,15 +28,17 @@ function App() {
       <Header />
       <main className="flex-1">
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/features" element={<Features />} />
-          <Route path="/product" element={<Product />} />
-          <Route path="/blog" element={<Blog />} />
+          <Route element={<Layout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/features" element={<Features />} />
+            <Route path="/product" element={<Product />} />
+            <Route path="/blog" element={<Blog />} />
+          </Route>
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<Login />} />
         </Routes>
-        <Footer />
+        {/* <Footer /> */}
       </main>
     </div>
   );
