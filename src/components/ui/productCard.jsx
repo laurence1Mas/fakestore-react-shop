@@ -24,7 +24,7 @@ export default function ProductCard({ product }) {
       </CardHeader>
       {/* IMAGE */}
       <div className="relative bg-gray-100">
-        <img src={`https://picsum.photos/${product.img}`} alt={product.name}
+        <img src={product.img} alt={product.name}
           className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
         />
 
@@ -73,8 +73,9 @@ export default function ProductCard({ product }) {
 
             {/* REVIEWS */}
             <span className="text-xs text-gray-500 mt-1">
-              ({product.rating || 4} reviews)
+              ({product.reviews} reviews)
             </span>
+
 
           </div>
         </div>
