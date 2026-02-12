@@ -79,8 +79,6 @@ export default function ProductCard({ product }) {
           </div>
         </div>
 
-
-
         {/* BUTTON */}
         <Button className="w-full bg-orange-500 hover:bg-orange-600">
           Add to cart
