@@ -9,7 +9,6 @@ import Product from "./pages/product";
 import Blog from "./pages/blog";
 import Footer from "./components/layouts/Footer";
 import "./style.css";
-
 function App() {
   return (
       <div className="flex min-h-screen flex-col">
