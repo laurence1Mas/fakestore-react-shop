@@ -11,7 +11,7 @@ import HeroBanner from "./components/sections/HeroBanner";
 import BrandsSection from "./components/sections/BrandsSection";
 import NewArrivalSection from "./components/sections/NewArrivalSection";
 import PromoBanner from "./components/sections/PromoBanner";
-import Footer from "./components/layouts/Footer";
+      
 
 import Home from "./pages/home";
 import About from "./pages/about";
