@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ProductCard from "@/components/ui/ProductCard";
+import ProductCard from "@/components/ui/productCard";
 import useTrending from "@/hooks/useTrending";
 
 const categories = [

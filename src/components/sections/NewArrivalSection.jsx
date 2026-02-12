@@ -1,4 +1,4 @@
-import ProductCard from "@/components/ui/ProductCard";
+import ProductCard from "@/components/ui/productCard";
 import useNewArrivals from "@/hooks/useNewArrivals";
 
 function NewArrivalSection() {
