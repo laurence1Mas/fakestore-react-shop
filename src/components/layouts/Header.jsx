@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState, useRef, useEffect } from "react";
+import { CartContext } from "../../services/cartService";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -71,17 +72,24 @@ function Header() {
     }
   }, [isMenuOpen]);
 
+  const { totalItems } = useContext(CartContext);
+
   return (
     <header className="w-full flex items-center  justify-between p-4 md:px-12 md:py-5 bg-background  fixed z-50">
       <h1 className="text-2xl md:text-3xl font-semibold">FastShop</h1>
 
       {/* Menu desktop */}
       <nav className="hidden md:flex items-center gap-4 text-lg font-medium md:gap-8">
-        <Link to="/" className="hover:text-popover-foreground/85 transition durection-300">
+        <Link
+          to="/"
+          className="hover:text-popover-foreground/85 transition durection-300"
+        >
           Home
         </Link>
         <Link to="/about">About</Link>
-        <Link to="/features" className="">Features</Link>
+        <Link to="/features" className="">
+          Features
+        </Link>
         <Link to="/product">Product</Link>
         <Link to="/blog">Blog</Link>
       </nav>
@@ -122,14 +130,13 @@ function Header() {
         )}
 
         {/* Cart Button */}
-        <Link to="/cart">
-          <Button
-            variant="secondary"
-            size="icon"
-            className="rounded-full w-8 h-8 bg-muted"
-          >
-            <FaCartShopping />
-          </Button>
+        <Link to="/cart" className="relative">
+          <FaCartShopping />
+          {totalItems > 0 && (
+            <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
+              {totalItems}
+            </span>
+          )}
         </Link>
 
         {/* User Button */}
@@ -182,7 +189,7 @@ function Header() {
           >
             Products
           </Link>
-          
+
           <Link
             to="/blog"
             className="w-full pb-5 border-b-2 border-foreground/20 text-xl font-medium hover:text-foreground/70"

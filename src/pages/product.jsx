@@ -3,10 +3,12 @@ import ProductCard from "@/components/ui/productCard";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import useProducts from "@/hooks/useProducts";
+import { useContext } from "react";
+import { CartContext } from "../.../../services/cartService";
 
 export default function Product() {
   const { products: allProducts, loading } = useProducts();
-
+  const { addToCart } = useContext(CartContext);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [priceRange, setPriceRange] = useState(1000);
   const [currentPage, setCurrentPage] = useState(1);
@@ -16,14 +18,14 @@ export default function Product() {
 
   // categories dynamiques depuis API
   const categories = useMemo(() => {
-    const unique = [...new Set(allProducts.map(p => p.category))];
+    const unique = [...new Set(allProducts.map((p) => p.category))];
     return ["All", ...unique];
   }, [allProducts]);
 
   // prix max dynamique
   const maxPrice = useMemo(() => {
     if (!allProducts.length) return 1000;
-    return Math.ceil(Math.max(...allProducts.map(p => p.price)));
+    return Math.ceil(Math.max(...allProducts.map((p) => p.price)));
   }, [allProducts]);
 
   // filtrage
@@ -41,7 +43,7 @@ export default function Product() {
 
   const products = filtered.slice(
     (currentPage - 1) * perPage,
-    currentPage * perPage
+    currentPage * perPage,
   );
 
   if (loading) {
@@ -50,7 +52,6 @@ export default function Product() {
 
   return (
     <div className="pt-28 px-4 md:px-12 pb-16">
-
       {/* HERO */}
       <section className="max-w-5xl mx-auto text-center space-y-6 mb-20">
         <h1 className="text-4xl md:text-5xl font-bold">
@@ -62,7 +63,6 @@ export default function Product() {
       </section>
 
       <div className="max-w-7xl mx-auto grid md:grid-cols-[260px_1fr] gap-10">
-
         {/* ASIDE FILTER */}
         <aside className="space-y-8">
           <Card className="p-5 space-y-4">
@@ -74,8 +74,9 @@ export default function Product() {
                   setSelectedCategory(c);
                   setCurrentPage(1);
                 }}
-                className={`block text-left w-full hover:text-orange-500 capitalize ${selectedCategory === c ? "font-semibold text-orange-500" : ""
-                  }`}
+                className={`block text-left w-full hover:text-orange-500 capitalize ${
+                  selectedCategory === c ? "font-semibold text-orange-500" : ""
+                }`}
               >
                 {c}
               </button>
@@ -83,9 +84,7 @@ export default function Product() {
           </Card>
 
           <Card className="p-5 space-y-4">
-            <h2 className="font-semibold text-lg">
-              Max Price: ${priceRange}
-            </h2>
+            <h2 className="font-semibold text-lg">Max Price: ${priceRange}</h2>
             <input
               type="range"
               min={0}
@@ -104,7 +103,11 @@ export default function Product() {
         <div className="space-y-10">
           <div className="grid grid-cols-2 md:grid-cols-3 mt-auto lg:grid-cols-4 gap-6">
             {products.map((product) => (
-              <div className="h-full mt-auto" key={product.id} onClick={() => setSelectedProduct(product)}>
+              <div
+                className="h-full mt-auto"
+                key={product.id}
+                onClick={() => setSelectedProduct(product)}
+              >
                 <ProductCard product={product} />
               </div>
             ))}
@@ -151,7 +154,10 @@ export default function Product() {
               <span className="text-xl font-bold">
                 ${selectedProduct.price}
               </span>
-              <Button className="bg-orange-500 hover:bg-orange-600">
+              <Button
+                className="bg-orange-500 hover:bg-orange-600"
+                onClick={() => addToCart(selectedProduct)}
+              >
                 Add to cart
               </Button>
             </div>
@@ -161,4 +167,3 @@ export default function Product() {
     </div>
   );
 }
-
