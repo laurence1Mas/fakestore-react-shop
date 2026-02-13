@@ -1,18 +1,28 @@
 import React, { createContext, useState, useEffect } from "react";
 
-export const CartContext = createContext();
+export const CartContext = createContext(null);
 
 export const CartProvider = ({ children }) => {
+  // 🔹 Charger depuis localStorage de façon sécurisée
   const [cartItems, setCartItems] = useState(() => {
-    const saved = localStorage.getItem("cart");
-    return saved ? JSON.parse(saved) : [];
+    try {
+      const saved = localStorage.getItem("cart");
+      return saved ? JSON.parse(saved) : [];
+    } catch (error) {
+      console.error("Erreur parsing cart:", error);
+      return [];
+    }
   });
 
+  // 🔹 Sauvegarde automatique
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cartItems));
   }, [cartItems]);
 
+  // 🔹 Ajouter au panier
   const addToCart = (product) => {
+    if (!product) return;
+
     setCartItems((prev) => {
       const existing = prev.find((item) => item.id === product.id);
 
@@ -28,9 +38,9 @@ export const CartProvider = ({ children }) => {
         ...prev,
         {
           id: product.id,
-          name: product.title, // ⚠ fakestore = title
+          name: product.title, // FakeStore API = title
           image: product.image,
-          price: product.price,
+          price: Number(product.price) || 0,
           description: product.description,
           quantity: 1,
         },
@@ -38,10 +48,12 @@ export const CartProvider = ({ children }) => {
     });
   };
 
+  // 🔹 Supprimer produit
   const removeFromCart = (id) => {
     setCartItems((prev) => prev.filter((item) => item.id !== id));
   };
 
+  // 🔹 Augmenter quantité
   const increaseQuantity = (id) => {
     setCartItems((prev) =>
       prev.map((item) =>
@@ -50,6 +62,7 @@ export const CartProvider = ({ children }) => {
     );
   };
 
+  // 🔹 Diminuer quantité
   const decreaseQuantity = (id) => {
     setCartItems((prev) =>
       prev.map((item) =>
@@ -60,12 +73,16 @@ export const CartProvider = ({ children }) => {
     );
   };
 
-  const clearCart = () => setCartItems([]);
+  // 🔹 Vider panier
+  const clearCart = () => {
+    setCartItems([]);
+  };
 
-  const totalItems = cartItems.reduce((acc, i) => acc + i.quantity, 0);
+  // 🔹 Totaux
+  const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
   const totalPrice = cartItems.reduce(
-    (acc, i) => acc + i.quantity * i.price,
+    (acc, item) => acc + item.quantity * item.price,
     0,
   );
 
